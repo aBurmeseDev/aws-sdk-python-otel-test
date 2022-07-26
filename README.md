@@ -16,3 +16,25 @@ An easy way for a traced application to send traces to AWS X-Ray is by using the
 
 Python 3.5+ is required to use OpenTelemetry Python. Check your currently installed Python version using `python3 -V`.
 For more information about supported Python versions, see the [OpenTelemetry Python package on PyPi](https://pypi.org/project/opentelemetry-api/).
+
+## Prerequisites
+
+Complete the following tasks:
+
+- If you don't have an AWS account, [create one](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
+  - If you're an Amazon employee, see the internal wiki for creating an AWS account.
+- Install the [AWS CLI](https://aws.amazon.com/cli/).
+  - Verify that the AWS CLI is installed by running `aws` in a terminal window.
+- Set up [AWS Shared Credential File](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
+  - Your `~/.aws/credentials` (`%UserProfile%\.aws\credentials` on Windows) should look like the following:
+    ```
+    [default]
+    aws_access_key_id = <ACCESS_KEY>
+    aws_secret_access_key = <SECRET_ACCESS_KEY>
+    ```
+  - Your `~/.aws/config` (`%UserProfile%\.aws\config` on Windows) should look like the following:
+    ```
+    [default]
+    region = us-west-2
+    ```
+
