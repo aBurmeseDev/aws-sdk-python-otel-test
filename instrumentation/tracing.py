@@ -16,7 +16,6 @@ trace.set_tracer_provider(
     )
 )
 
-# Instrument Packages
+# Instrument Package
 
 BotocoreInstrumentor().instrument()
-
