@@ -7,11 +7,12 @@ from time import sleep
 if __name__ == "__main__":
     s3 = boto3.client("s3")
     s3.region = "us-east-2"
-    response = s3.list_buckets()
-
+    for i in range(30):
+        response = s3.list_buckets()
+        sleep(1)
     print("Response: ", response)
 
-# # DynamoDB listTables client method
+# DynamoDB listTables client method
 # if __name__ == "__main__":
 #     client = boto3.client("dynamodb")
 #     client.region = "us-east-2"
