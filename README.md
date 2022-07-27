@@ -96,4 +96,13 @@ $ trace logs
     }
 }
 ```
+</details>
 
+### Screenshots
+
+<details>
+<summary>Jaeger Traces when operation is called multiple times</summary>
+
+![Jaeger Traces for AWS SDK for JavaScript](img/jaeger-traces.png?raw=true)
+
+</details>
