@@ -1,6 +1,12 @@
 # aws-sdk-python-otel-test
+This sample shows how to use OpenTelemetry Python API to instrument the following calls in AWS SDK for Python:
+- `ListBuckets` call on S3 client
+- `ListTables` call on DynamoDB client
 
-## How it works
+This example exports spans data to `Console`. You can also export it to [Jaeger][jaegertracing]
+by setting `JAEGER_ENABLED` environment variable.
+
+## What is OpenTelemetry and How it works?
 
 OpenTelemetry is a project maintained by the Cloud Native Computing Foundation which provides open source APIs, libraries, and agents to collect distributed traces and metrics for application monitoring.
 
@@ -20,7 +26,14 @@ For more information about supported Python versions, see the [OpenTelemetry Pyt
 ## Prerequisites
 
 Complete the following tasks:
-
+- Install **Python** by following these steps [here](https://realpython.com/installing-python/)
+- Install **pip** by following these steps [here](https://pip.pypa.io/en/stable/installation/)
+- Install the following dependencies:
+  - `pip install boto3`
+  - `pip install opentelemetry-api`
+  - `pip install opentelemetry-sdk`
+  - `pip install opentelemetry-sdk-extension-aws`
+  - `pip install opentelemetry-exporter-jaeger`
 - If you don't have an AWS account, [create one](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
   - If you're an Amazon employee, see the internal wiki for creating an AWS account.
 - Install the [AWS CLI](https://aws.amazon.com/cli/).
@@ -37,4 +50,50 @@ Complete the following tasks:
     [default]
     region = us-west-2
     ```
+- (Optional) Setup [Jaeger Tracing][jaeger-getting-started]: needs to be running on `localhost` port `16686`.
+
+## Setup
+
+The test code from this package uses `AwsInstrumentation` from [@opentelemetry/instrumentation-aws-sdk][instrumentation-aws-sdk]
+to instrument listBuckets call on S3 and listTables call on DynamoDB client.
+
+### Trace Logs and Data Metrics
+<details>
+<summary>console trace logs</summary>
+
+```console
+$ trace logs
+{
+    "name": "S3.ListBuckets",
+    "context": {
+        "trace_id": "0x7db042e4fe525fb8c833e18572d319b7",
+        "span_id": "0x2611d37fd852d169",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.CLIENT",
+    "parent_id": null,
+    "start_time": "2022-07-26T23:11:49.728823Z",
+    "end_time": "2022-07-26T23:11:49.919806Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "rpc.system": "aws-api",
+        "rpc.service": "S3",
+        "rpc.method": "ListBuckets",
+        "aws.region": "us-west-1",
+        "aws.request_id": "8YV1ZYTFD7S7N7AZ",
+        "retry_attempts": 0,
+        "http.status_code": 200
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "telemetry.sdk.language": "python",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.11.1",
+        "service.name": "unknown_service"
+    }
+}
+```
 
