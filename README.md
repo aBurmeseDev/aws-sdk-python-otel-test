@@ -3,8 +3,7 @@ This sample shows how to use OpenTelemetry Python API to instrument the followin
 - `ListBuckets` call on S3 client
 - `ListTables` call on DynamoDB client
 
-This example exports spans data to `Console`. You can also export it to [Jaeger][jaegertracing]
-by setting `JAEGER_ENABLED` environment variable.
+This example exports spans data to `Jaeger`. You can also export it to [Jaeger].
 
 ## What is OpenTelemetry and How it works?
 
@@ -106,3 +105,9 @@ $ trace logs
 ![Jaeger Traces for AWS SDK for Python](img/jaeger-traces.png?raw=true)
 
 </details>
+
+## References
+- [OpenTelemetry Python](https://github.com/open-telemetry/opentelemetry-python)
+- [Getting Started with the Python SDK on Traces Instrumentation](https://aws-otel.github.io/docs/getting-started/python-sdk)
+- [opentelemetry-python-contrib/OpenTelemetry.Contrib.Instrumentation.AWS](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-boto3sqs)
+- [opentelemetry-python-contrib](https://github.com/open-telemetry/opentelemetry-python-contrib)
